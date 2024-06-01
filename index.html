@@ -11,20 +11,20 @@
 <h2>Simulação de Cenários - Receita Compartilhada</h2>
 
 <div>
-  <label for="inscritos_total">Total de Inscritos:</label>
-  <input type="number" id="inscritos_total" value="415000" onchange="calcularCenario()"><br><br>
+  <label for="inscritos_total">Total de EMpresas [TAM] -BR com mais de 100 funcionarios:</label>
+  <input type="number" id="inscritos_total" value="349.954" onchange="calcularCenario()"><br><br>
   
-  <label for="inscritos_brasil">Inscritos do Brasil:</label>
-  <input type="number" id="inscritos_brasil" value="166000" onchange="calcularCenario()"><br><br>
+  <label for="inscritos_brasil">Empresas Potencial Real [SAM]- Assessoria no Brasil:</label>
+  <input type="number" id="inscritos_brasil" value="25.000" onchange="calcularCenario()"><br><br>
   
-  <label for="porcentagem_brasil">Porcentagem de Inscritos do Brasil (0-100):</label>
-  <input type="number" id="porcentagem_brasil" step="0.1" value="40" onchange="calcularCenario()"><br><br>
+  <label for="porcentagem_brasil">Porcentagem Potencial empresass MKT Share [SOM] (0-100):</label>
+  <input type="number" id="porcentagem_brasil" step="0.1" value="0.028" onchange="calcularCenario()"><br><br>
   
-  <label for="base_assinantes">Base de Assinantes no Brasil:</label>
-  <input type="number" id="base_assinantes" value="7000" onchange="calcularCenario()"><br><br>
+  <label for="base_assinantes">Base de Assinantes Assessoria:</label>
+  <input type="number" id="base_assinantes" value="2500" onchange="calcularCenario()"><br><br>
   
-  <label for="receita_projetada">Receita Projetada (R$):</label>
-  <input type="number" id="receita_projetada" value="54450" onchange="calcularCenario()"><br><br>
+  <label for="lucro_projetado">Lucro Projetado - 2500 func. 25 Empresas (R$):</label>
+  <input type="number" id="lucro_projetado" value="359427" onchange="calcularCenario()"><br><br>
   
   <label for="num_contrapartes">Número de Contrapartes:</label>
   <input type="number" id="num_contrapartes" value="1" onchange="calcularCenario()"><br><br>
@@ -50,11 +50,11 @@ function calcularCenario() {
   var num_contrapartes = parseInt(document.getElementById("num_contrapartes").value);
   
   // Calcula a receita proporcionalmente ao número de assinantes
-  var receita_projetada = (base_assinantes / 2500) * 359427;
+  var lucro_projetado = (base_assinantes / 2500) * 359427;
   
   var porcentagem_assinantes = (base_assinantes / inscritos_brasil) * 100;
-  var receita_mvp = receita_projetada * 0.40;
-  var receita_contrapartes_total = receita_projetada * 0.60;
+  var receita_mvp = lucro_projetado * 0.40;
+  var receita_contrapartes_total = lucro_projetado * 0.60;
   var receita_contrapartes_individual = receita_contrapartes_total / num_contrapartes;
   
   var labels = ['MVP'];
@@ -83,7 +83,7 @@ function calcularCenario() {
   }];
   
   var layout = {
-    title: 'Distribuição de Receita',
+    title: 'Distribuição de Lucro',
     showlegend: true
   };
   
@@ -108,7 +108,7 @@ function salvarEstado() {
       inscritos_brasil: document.getElementById("inscritos_brasil").value,
       porcentagem_brasil: document.getElementById("porcentagem_brasil").value,
       base_assinantes: document.getElementById("base_assinantes").value,
-      receita_projetada: document.getElementById("receita_projetada").value,
+      lucro_projetado: document.getElementById("lucro_projetado").value,
       num_contrapartes: document.getElementById("num_contrapartes").value
     };
     var jsonEstado = JSON.stringify(estado);
@@ -135,7 +135,7 @@ function carregarEstado(event) {
     document.getElementById("inscritos_brasil").value = estado.inscritos_brasil;
     document.getElementById("porcentagem_brasil").value = estado.porcentagem_brasil;
     document.getElementById("base_assinantes").value = estado.base_assinantes;
-    document.getElementById("receita_projetada").value = estado.receita_projetada;
+    document.getElementById("lucro_projetado").value = estado.lucro_projetado;
     document.getElementById("num_contrapartes").value = estado.num_contrapartes;
     calcularCenario(); // Recalcular com os valores carregados
   };
