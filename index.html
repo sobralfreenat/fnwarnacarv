@@ -50,11 +50,11 @@ function calcularCenario() {
   var num_contrapartes = parseInt(document.getElementById("num_contrapartes").value);
   
   // Calcula a receita proporcionalmente ao número de assinantes
-  var receita_projetada = (base_assinantes / 7000) * 54450;
+  var receita_projetada = (base_assinantes / 2500) * 720000;
   
   var porcentagem_assinantes = (base_assinantes / inscritos_brasil) * 100;
-  var receita_mvp = receita_projetada * 0.368;
-  var receita_contrapartes_total = receita_projetada * 0.632;
+  var receita_mvp = receita_projetada * 0.40;
+  var receita_contrapartes_total = receita_projetada * 0.60;
   var receita_contrapartes_individual = receita_contrapartes_total / num_contrapartes;
   
   var labels = ['MVP'];
